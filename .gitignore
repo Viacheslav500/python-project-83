@@ -7,3 +7,5 @@ __pycache__/
 coverage.xml
 coverage.lcov
 .env
+.python-version
+main.py
