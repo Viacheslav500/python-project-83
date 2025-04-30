@@ -13,3 +13,9 @@ Page Analyzer is a Flask web application that allows users to analyze web pages 
 URL availability check.
 Analysis of title and description tags.
 Display of check results on the user interface.
+
+
+### Link to the project on Render.com
+
+
+https://python-project-83-olh3.onrender.com/
