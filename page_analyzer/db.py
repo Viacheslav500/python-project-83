@@ -68,7 +68,9 @@ def insert_url_check(conn, url_id, data):
     cur = conn.cursor()
     cur.execute(
         (
-            'INSERT INTO url_checks (url_id, status_code, h1, title, description, created_at) '
+            'INSERT INTO url_checks (
+            url_id, status_code, h1, title, description, created_at
+            ) '
             'VALUES (%s, %s, %s, %s, %s, %s)'
         ),
         (
@@ -120,7 +122,8 @@ def get_url_details(url_id):
     cur.execute('SELECT * FROM urls WHERE id = %s', (url_id,))
     url_data = cur.fetchone()
     cur.execute(
-            'SELECT * FROM url_checks WHERE url_id = %s ORDER BY created_at DESC',
+            'SELECT * FROM url_checks WHERE url_id = %s 
+            ORDER BY created_at DESC',
             (url_id,),
             )
     checks = cur.fetchall()
