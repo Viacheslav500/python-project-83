@@ -122,8 +122,10 @@ def get_url_details(url_id):
     cur.execute('SELECT * FROM urls WHERE id = %s', (url_id,))
     url_data = cur.fetchone()
     cur.execute(
-            'SELECT * FROM url_checks WHERE url_id = %s 
-            ORDER BY created_at DESC',
+            """
+            SELECT * FROM url_checks WHERE url_id = %s 
+            ORDER BY created_at DESC
+            """,
             (url_id,),
             )
     checks = cur.fetchall()
