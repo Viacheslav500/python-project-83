@@ -9,5 +9,7 @@ def format_date(value, format='%Y-%m-%d'):
 
 def normalize_url(input_url):
     url_parts = urlparse(input_url)
-    normalized_url = urlunparse((url_parts.scheme, url_parts.netloc, '', '', '', ''))
+    normalized_url = urlunparse(
+            (url_parts.scheme, url_parts.netloc, '', '', '', '')
+            )
     return normalized_url

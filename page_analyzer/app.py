@@ -51,7 +51,11 @@ def add_url():
         existing_url = check_url_exists(cur, normalized_url)
         if existing_url:
             flash('Страница уже существует', 'alert-info')
-            redirect_url = redirect(url_for('url_details', id=existing_url['id']))
+            redirect_url = redirect(
+                    url_for(
+                        'url_details', id=existing_url['id']
+                        )
+                    )
         else:
             url_id = insert_new_url(cur, normalized_url)
             conn.commit()
