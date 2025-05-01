@@ -68,7 +68,7 @@ def insert_url_check(conn, url_id, data):
     cur = conn.cursor()
     cur.execute(
         """
-            INSERT INTO uirl_checks (
+            INSERT INTO url_checks (
             url_id, status_code, h1, title, description, created_at
             )
             VALUES (%s, %s, %s, %s, %s, %s)
