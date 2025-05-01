@@ -67,19 +67,19 @@ def fetch_and_parse_url(url):
 def insert_url_check(conn, url_id, data):
     cur = conn.cursor()
     cur.execute(
-        (
-            'INSERT INTO url_checks (
+        """
+            INSERT INTO uirl_checks (
             url_id, status_code, h1, title, description, created_at
-            ) '
-            'VALUES (%s, %s, %s, %s, %s, %s)'
-        ),
+            )
+            VALUES (%s, %s, %s, %s, %s, %s)
+        """,
         (
             url_id,
             data['status_code'],
             data['h1'],
             data['title'],
             data['description'],
-            datetime.now()
+            datetime.now(),
         ),
     )
     conn.commit()
