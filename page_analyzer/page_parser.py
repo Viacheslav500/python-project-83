@@ -3,7 +3,7 @@ import requests
 
 
 def parse_page_content(html_content):
-    soup = BeautifulSoup(html.content, 'html.parser')
+    soup = BeautifulSoup(response.content, 'html.parser')
     return {
             'title': (
                     soup.find('title').text 
