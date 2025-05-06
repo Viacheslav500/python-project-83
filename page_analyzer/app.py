@@ -1,11 +1,12 @@
 from flask import Flask, request, render_template, redirect, url_for, flash
 from .db import (open_db_connection, close_db_connection, get_url_by_id,
-                 fetch_and_parse_url, insert_url_check, check_url_exists,
+                 insert_url_check, check_url_exists,
                  insert_new_url, get_all_urls, get_url_details)
 import validators
 from dotenv import load_dotenv
 import os
 from .utils import format_date, normalize_url
+from .page_parser import fetch_and_parse_url
 
 
 load_dotenv()
