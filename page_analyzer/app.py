@@ -8,6 +8,7 @@ import os
 from .utils import format_date, normalize_url
 from .page_parser import fetch_and_parse_url
 from psycopg2 import Error as DBError
+from psycopg2 import IntegrityError
 
 
 load_dotenv()
