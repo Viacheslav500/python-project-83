@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 import os
 from .utils import format_date, normalize_url
 from .page_parser import fetch_and_parse_url
+from psycopg2 import Error as DBError
 
 
 load_dotenv()
@@ -50,19 +51,18 @@ def add_url():
     conn, cur = open_db_connection()
     try:
         existing_url = check_url_exists(cur, normalized_url)
-        if existing_url:
+        existing_url:
             flash('Страница уже существует', 'alert-info')
             redirect_url = redirect(
-                    url_for(
-                        'url_details', id=existing_url['id']
-                        )
+                url_for(
+                    'url_details', id=existing_url['id']
                     )
-        else:
-            url_id = insert_new_url(cur, normalized_url)
-            conn.commit()
-            flash('Страница успешно добавлена', 'alert-success')
-            redirect_url = redirect(url_for('url_details', id=url_id))
-    except Exception as e:
+                )
+        url_id = insert_new_url(cur, normalized_url)
+        conn.commit()
+        flash('Страница успешно добавлена', 'alert-success')
+        redirect_url = redirect(url_for('url_details', id=url_id))
+    except DBError as e:
         conn.rollback()
         flash(f'Произошла ошибка при добавлении URL: {e}', 'alert-danger')
         redirect_url = render_template('index.html'), 422
