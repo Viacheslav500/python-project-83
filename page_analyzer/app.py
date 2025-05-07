@@ -63,7 +63,7 @@ def add_url():
             flash('Страница уже существует', 'alert-info')
             redirect_url = redirect(
                     url_for(
-                        'url_details',id=existing_url['id']
+                        'url_details', id=existing_url['id']
                         )
                     )
     except DBError as e:
