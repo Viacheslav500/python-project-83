@@ -50,18 +50,21 @@ def add_url():
     normalized_url = normalize_url(raw_url)
     conn, cur = open_db_connection()
     try:
-        existing_url = check_url_exists(cur, normalized_url)
-        existing_url:
-            flash('Страница уже существует', 'alert-info')
-            redirect_url = redirect(
-                url_for(
-                    'url_details', id=existing_url['id']
-                    )
-                )
         url_id = insert_new_url(cur, normalized_url)
         conn.commit()
         flash('Страница успешно добавлена', 'alert-success')
         redirect_url = redirect(url_for('url_details', id=url_id))
+    except IntegrityError:
+        conn.rollback()
+        existing_url = check_url_exists(cur, normalized_url)
+        if existing_url:
+            url_id = existing_url['id']
+            flash('Страница уже существует', 'alert-info')
+            redirect_url = redirect(
+                    url_for(
+                        'url_details',id=existing_url['id']
+                        )
+                    )
     except DBError as e:
         conn.rollback()
         flash(f'Произошла ошибка при добавлении URL: {e}', 'alert-danger')
